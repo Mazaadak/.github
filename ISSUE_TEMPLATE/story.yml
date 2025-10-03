@@ -1,0 +1,33 @@
+name: Story / Task
+description: "Functional user story or developer task tied to an Epic"
+title: "[Service] <short description>"
+labels: ["story"]
+body:
+  - type: textarea
+    id: story
+    attributes:
+      label: Story
+      description: "Describe the feature or task. Use user story format if user-facing."
+      placeholder: "As a bidder, I want to see the highest bid update in real time."
+    validations:
+      required: true
+
+  - type: input
+    id: epic
+    attributes:
+      label: Linked Epic
+      description: "Paste the Epic issue number or link from mazadak-project-management (REQUIRED)."
+      placeholder: "mazadak-project-management#12"
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: "What conditions must be met for this to be considered done?"
+      value: |
+        - [ ] Condition 1
+        - [ ] Condition 2
+    validations:
+      required: true
