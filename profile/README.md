@@ -1,6 +1,6 @@
-## Mazadak - An Auctions E-Commerce Platform
+## Mazadak - An Auctions Marketplace
 
-Mazadak is a microservices-based e-commerce platform that combines auctions and 
+Mazadak is a microservices-based marketplace that combines auctions and 
 fixed-price sales into a single marketplace. Unlike traditional e-commerce, buyers can 
 either purchase products instantly at a set price or compete in real-time auctions to secure 
 better deals. Sellers gain flexibility by choosing how to list items, while buyers get a 
