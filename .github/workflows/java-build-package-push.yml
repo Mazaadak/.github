@@ -1,0 +1,48 @@
+name: Build, Test, and Push Image
+
+on:
+  workflow_call:
+    inputs:
+      java-version:
+        description: 'Java version to use'
+        required: false
+        default: '21'
+    secrets:
+      GITHUB_TOKEN:
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ inputs.java-version }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: ${{ inputs.java-version }}
+          cache: maven
+
+      - name: Run tests
+        run: mvn test --batch-mode
+
+      - name: Build JAR package
+        run: mvn package -DskipTests --batch-mode
+
+      - name: Build and push image with Jib
+        if: github.ref_name == 'main'
+        run: |
+          IMAGE_NAME=ghcr.io/mazadak/${{ github.event.repository.name }}
+          TAG=${{ github.sha }}
+          mvn compile jib:build \
+            -Djib.to.image=$IMAGE_NAME \
+            -Djib.to.tags=$TAG,latest \
+            -Djib.to.auth.username=${{ github.actor }} \
+            -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: ${{ github.actor }}
+
