@@ -8,6 +8,11 @@ on:
         required: false
         default: '21'
         type: string
+      skip-tests:
+        description: 'Skip running tests'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   build:
@@ -25,6 +30,7 @@ jobs:
           cache: maven
 
       - name: Run tests
+        if: ${{ !inputs.skip-tests }}
         run: mvn test --batch-mode
 
       - name: Build JAR package
