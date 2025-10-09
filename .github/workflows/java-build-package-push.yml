@@ -8,9 +8,6 @@ on:
         required: false
         default: '21'
         type: string
-    secrets:
-      GITHUB_TOKEN:
-        required: true
 
 jobs:
   build:
