@@ -35,14 +35,10 @@ jobs:
       - name: Build and push image with Jib
         if: github.ref_name == 'main'
         run: |
-          IMAGE_NAME=ghcr.io/mazadak/${{ github.event.repository.name }}
+          IMAGE_NAME=ghcr.io/mazaadak/${{ github.event.repository.name }}
           TAG=${{ github.sha }}
           mvn compile jib:build \
             -Djib.to.image=$IMAGE_NAME \
             -Djib.to.tags=$TAG,latest \
             -Djib.to.auth.username=${{ github.actor }} \
             -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ACTOR: ${{ github.actor }}
-
