@@ -37,7 +37,7 @@ jobs:
         run: mvn package -DskipTests --batch-mode
 
       - name: Build and push image with Jib
-        if: github.ref_name == 'main'
+        if: github.ref_name == 'main' || github.ref_name == 'master'
         run: |
           IMAGE_NAME=ghcr.io/mazaadak/${{ github.event.repository.name }}
           TAG=${{ github.sha }}
