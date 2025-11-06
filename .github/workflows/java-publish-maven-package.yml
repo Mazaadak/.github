@@ -17,6 +17,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
       packages: write
@@ -31,22 +32,22 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: ${{ inputs.java-version }}
+          cache: 'maven'
           server-id: github
           server-username: GITHUB_ACTOR
           server-password: GITHUB_TOKEN
           settings-path: ${{ github.workspace }}
-          cache: 'maven'
 
       - name: Run tests
         if: ${{ !inputs.skip-tests }}
-        run: mvn test --batch-mode --settings ${{ steps.setup-java.outputs.settings-path }}/settings.xml
+        run: mvn -B test --settings ${{ steps.setup-java.outputs.settings-path }}/settings.xml
 
-      - name: Build package
+      - name: Package JAR
         run: mvn -B clean package -DskipTests --settings ${{ steps.setup-java.outputs.settings-path }}/settings.xml
 
       - name: Publish to GitHub Packages
         if: github.ref_name == 'main' || github.ref_name == 'master'
-        run: mvn -B deploy -DskipTests --settings ${{ steps.setup-java.outputs.settings-path }}/settings.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTOR: ${{ github.actor }}
+        run: mvn -B deploy -DskipTests --settings ${{ steps.setup-java.outputs.settings-path }}/settings.xml
