@@ -22,13 +22,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Debug Maven Settings
-        run: |
-          echo "===== ~/.m2/settings.xml ====="
-          cat ~/.m2/settings.xml || true
-          echo "=============================="
-
-
       - name: Set up JDK ${{ inputs.java-version }}
         uses: actions/setup-java@v4
         with:
@@ -38,6 +31,12 @@ jobs:
           server-id: github
           server-username: ${{ github.actor }}
           server-password: ${{ secrets.MAZADAK_GITHUB_PACKAGES_TOKEN }}
+
+      - name: Debug Maven Settings
+        run: |
+          echo "===== ~/.m2/settings.xml ====="
+          cat ~/.m2/settings.xml || true
+          echo "=============================="
 
       - name: Run tests
         if: ${{ !inputs.skip-tests }}
