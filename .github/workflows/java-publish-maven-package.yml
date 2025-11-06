@@ -1,0 +1,48 @@
+name: Publish Java Package to GitHub Packages
+
+on:
+  workflow_call:
+    inputs:
+      java-version:
+        description: 'Java version to use'
+        required: false
+        default: '21'
+        type: string
+      skip-tests:
+        description: 'Skip running tests'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ inputs.java-version }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: ${{ inputs.java-version }}
+          server-id: github
+          settings-path: ${{ github.workspace }}
+          cache: 'maven'
+
+      - name: Run tests
+        if: ${{ !inputs.skip-tests }}
+        run: mvn test --batch-mode
+
+      - name: Package JAR
+        run: mvn -B package -DskipTests
+
+      - name: Publish to GitHub Packages
+        if: github.ref_name == 'main' || github.ref_name == 'master'
+        run: mvn -B deploy -DskipTests
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
