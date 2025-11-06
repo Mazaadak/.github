@@ -34,8 +34,8 @@ jobs:
           java-version: ${{ inputs.java-version }}
           cache: maven
           server-id: github
-          server-username: ${{ github.actor }}
-          server-password: ${{ secrets.GITHUB_TOKEN }}
+          server-username: GITHUB_ACTOR
+          server-password: GITHUB_TOKEN
 
       - name: Debug Maven Settings
         run: |
@@ -49,6 +49,9 @@ jobs:
 
       - name: Build JAR package
         run: mvn package -DskipTests --batch-mode
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: ${{ github.actor }}
 
       - name: Build and push image with Jib
         if: github.ref_name == 'main' || github.ref_name == 'master'
