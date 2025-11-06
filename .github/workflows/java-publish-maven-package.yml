@@ -26,6 +26,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up JDK ${{ inputs.java-version }}
         uses: actions/setup-java@v4
@@ -36,6 +38,28 @@ jobs:
           server-id: github
           server-username: GITHUB_ACTOR
           server-password: GITHUB_TOKEN
+
+      - name: Compute project version
+        id: version
+        run: |
+          BRANCH="${GITHUB_REF_NAME}"
+          echo "Current branch: $BRANCH"
+
+          # If on main, determine version
+          if [[ "$BRANCH" == "main" || "$BRANCH" == "master" ]]; then
+            TAG=$(git describe --tags --abbrev=0 2>/dev/null || true)
+            if [[ -z "$TAG" ]]; then
+              VERSION="1.0.${GITHUB_RUN_NUMBER}"
+            else
+              VERSION="$TAG"
+            fi
+          else
+            VERSION="0.0.${GITHUB_RUN_NUMBER}-SNAPSHOT"
+          fi
+
+          echo "Using version: $VERSION"
+          mvn -B versions:set -DnewVersion=${VERSION}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Run tests
         if: ${{ !inputs.skip-tests }}
@@ -49,4 +73,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTOR: ${{ github.actor }}
-        run: mvn -B deploy -DskipTests
+        run: |
+          echo "Deploying version ${{ steps.version.outputs.version }}..."
+          mvn -B deploy -DskipTests
