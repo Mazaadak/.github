@@ -28,6 +28,9 @@ jobs:
           distribution: 'temurin'
           java-version: ${{ inputs.java-version }}
           cache: maven
+          server-id: github
+          server-username: GITHUB_ACTOR
+          server-password: GITHUB_TOKEN
 
       - name: Run tests
         if: ${{ !inputs.skip-tests }}
