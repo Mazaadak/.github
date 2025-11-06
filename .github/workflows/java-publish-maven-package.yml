@@ -36,8 +36,8 @@ jobs:
           java-version: ${{ inputs.java-version }}
           cache: 'maven'
           server-id: github
-          server-username: GITHUB_ACTOR
-          server-password: GITHUB_TOKEN
+          server-username: ${{ github.actor }}
+          server-password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Compute project version
         id: version
