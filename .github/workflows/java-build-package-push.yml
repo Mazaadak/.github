@@ -13,10 +13,6 @@ on:
         required: false
         default: false
         type: boolean
-    secrets:
-      MAZADAK_GITHUB_PACKAGES_TOKEN:
-        description: 'GitHub Packages read token'
-        required: true
 
 
 jobs:
