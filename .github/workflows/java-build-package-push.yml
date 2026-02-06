@@ -14,6 +14,7 @@ on:
         default: false
         type: boolean
 
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,6 +29,15 @@ jobs:
           distribution: 'temurin'
           java-version: ${{ inputs.java-version }}
           cache: maven
+          server-id: github
+          server-username: GITHUB_ACTOR
+          server-password: GITHUB_TOKEN
+
+      - name: Debug Maven Settings
+        run: |
+          echo "===== ~/.m2/settings.xml ====="
+          cat ~/.m2/settings.xml || true
+          echo "=============================="
 
       - name: Run tests
         if: ${{ !inputs.skip-tests }}
@@ -35,6 +45,9 @@ jobs:
 
       - name: Build JAR package
         run: mvn package -DskipTests --batch-mode
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: ${{ github.actor }}
 
       - name: Build and push image with Jib
         if: github.ref_name == 'main' || github.ref_name == 'master'
