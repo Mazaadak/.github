@@ -1,18 +1,60 @@
-## Mazadak - An Auctions Marketplace
+# Mazadak
 
-Mazadak is a microservices-based marketplace that combines auctions and 
-fixed-price sales into a single marketplace. Unlike traditional e-commerce, buyers can 
-either purchase products instantly at a set price or compete in real-time auctions to secure 
-better deals. Sellers gain flexibility by choosing how to list items, while buyers get a 
-dynamic and engaging shopping experience.
+Mazadak is an Auction-based e-commerce platform built with microservices architecture.
 
-<!--
+Sellers list products through auctions or fixed-price listings, buyers bid or purchase directly. Built with Spring Boot, Temporal Saga workflows, Kafka events, and Stripe payments.
 
-**Here are some ideas to get you started:**
+## Documentation
+For complete documentation, check out [the wiki](https://github.com/Mazaadak/.github/wiki).
 
-🙋‍♀️ A short introduction - what is your organization all about?
-🌈 Contribution guidelines - how can the community get involved?
-👩‍💻 Useful resources - where can the community find your docs? Is there anything else the community should know?
-🍿 Fun facts - what does your team eat for breakfast?
-🧙 Remember, you can do mighty things with the power of [Markdown](https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
--->
+**Key pages:**
+- [**Overview**](https://github.com/Mazaadak/.github/wiki/Home) - Platform overview
+- [**Architecture**](https://github.com/Mazaadak/.github/wiki/Architecture---Overview) - System design
+- [**Contribution Guide**](<!-- TODO -->) - How to contribute to Mazadak
+
+## Team
+
+<div align="center">
+<div style="overflow-x: auto; max-width: 800px; margin: 0 auto;">
+<table>
+<tr>
+<td align="center">
+  <a href="https://github.com/HassanIsmail16">
+    <img src="https://github.com/HassanIsmail16.png?size=100" width="80" height="80"  alt="Hassan Ali">
+  </a>
+  <br><strong>Hassan Ali</strong>
+</td>
+<td align="center">
+  <a href="https://github.com/Momen-Abdelkader">
+    <img src="https://github.com/Momen-Abdelkader.png?size=100" width="80" height="80" alt="Momen Abd El-Kader">
+  </a>
+  <br><strong>Momen Abd El-Kader</strong>
+</td>
+<td align="center">
+  <a href="https://github.com/Abdelrahman-358">
+    <img src="https://github.com/Abdelrahman-358.png?size=100" width="80" height="80" alt="Abdelrahman Mostafa">
+  </a>
+  <br><strong>Abdelrahman Mostafa</strong>
+</td>
+<td align="center">
+  <a href="https://github.com/AnsElwkel">
+    <img src="https://github.com/AnsElwkel.png?size=100" width="80" height="80" alt="Anas Elwkel">
+  </a>
+  <br><strong>Anas Elwkel</strong>
+</td>
+<td align="center">
+  <a href="https://github.com/melbiialy">
+    <img src="https://github.com/melbiialy.png?size=100" width="80" height="80" alt="Mahmoud Elbialy">
+  </a>
+  <br><strong>Mahmoud Elbialy</strong>
+</td>
+<td align="center">
+  <a href="https://github.com/Yooussefff">
+    <img src="https://github.com/Yooussefff.png?size=100" width="80" height="80" alt="Youssef Mamhoud">
+  </a>
+  <br><strong>Youssef Mahmoud</strong>
+</td>
+</tr>
+</table>
+</div>
+</div>
