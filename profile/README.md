@@ -5,12 +5,13 @@ Mazadak is an Auction-based e-commerce platform built with microservices archite
 Sellers list products through auctions or fixed-price listings, buyers bid or purchase directly. Built with Spring Boot, Temporal Saga workflows, Kafka events, and Stripe payments.
 
 ## Documentation
-For complete documentation, check out [the wiki](https://github.com/Mazaadak/.github/wiki).
+For complete documentation, check out our [wiki](https://github.com/Mazaadak/.github/wiki).
 
 **Key pages:**
 - [**Overview**](https://github.com/Mazaadak/.github/wiki/Home) - Platform overview
 - [**Architecture**](https://github.com/Mazaadak/.github/wiki/Architecture---Overview) - System design
-- [**Contribution Guide**](<!-- TODO -->) - How to contribute to Mazadak
+- [**Environment Setup**](https://github.com/Mazaadak/.github/wiki/Environment-Setup) - Local setup
+- [**Contribution Guide**](https://github.com/Mazaadak/.github/wiki/Contribution-Guide) - How to contribute to Mazadak
 
 ## Team
 
