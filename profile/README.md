@@ -29,7 +29,7 @@ For complete documentation, check out our [wiki](https://github.com/Mazaadak/.gi
   <a href="https://github.com/Momen-Abdelkader">
     <img src="https://github.com/Momen-Abdelkader.png?size=100" width="80" height="80" alt="Momen Abd El-Kader">
   </a>
-  <br><strong>Momen Abd El-Kader</strong>
+  <br><strong>Momen Abdelkader</strong>
 </td>
 <td align="center">
   <a href="https://github.com/Abdelrahman-358">
